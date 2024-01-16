@@ -11,3 +11,8 @@ class Principal(db.Model):
 
     def __repr__(self):
         return '<Principal %r>' % self.id
+
+    @classmethod
+    def filter(cls, *criterion):
+        db_query = db.session.query(cls)
+        return db_query.filter(*criterion)
