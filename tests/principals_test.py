@@ -2,6 +2,9 @@ from core.models.assignments import AssignmentStateEnum, GradeEnum
 
 
 def test_get_assignments(client, h_principal):
+    """
+    success case : Only submitted and graded assignments should be listed
+    """
     response = client.get(
         '/principal/assignments',
         headers=h_principal
@@ -31,6 +34,9 @@ def test_grade_assignment_draft_assignment(client, h_principal):
 
 
 def test_grade_assignment(client, h_principal):
+    """
+    success case : Grade the assignment
+    """
     response = client.post(
         '/principal/assignments/grade',
         json={
@@ -47,6 +53,9 @@ def test_grade_assignment(client, h_principal):
 
 
 def test_regrade_assignment(client, h_principal):
+    """
+    success case : Re-grade the assignment
+    """
     response = client.post(
         '/principal/assignments/grade',
         json={
@@ -86,7 +95,7 @@ def test_grade_assignment_bad_assignment(client, h_principal):
     failure case: If an assignment does not exists check and throw 404
     """
     response = client.post(
-        '/teacher/assignments/grade',
+        '/principal/assignments/grade',
         headers=h_principal,
         json={
             "id": 100000,
@@ -101,6 +110,9 @@ def test_grade_assignment_bad_assignment(client, h_principal):
 
 
 def test_list_teachers(client, h_principal):
+    """
+    success case : list teachers
+    """
     response = client.get(
         '/principal/teachers',
         headers=h_principal

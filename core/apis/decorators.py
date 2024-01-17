@@ -46,7 +46,6 @@ def authenticate_principal(func):
             assertions.assert_true(p.user_id == Teacher.filter(Teacher.id == p.teacher_id).first().user_id,'User id and Teacher id does not match')
         
         elif request.path.startswith('/principal'):
-            print(Principal.query.with_entities(Principal.id).all())
             assertions.assert_true( (p.principal_id is not None) and (p.principal_id in [row[0] for row in Principal.query.with_entities(Principal.id).all()]), 'requester should be a principal')
             assertions.assert_true(p.user_id == Principal.filter(Principal.id == p.principal_id).first().user_id, 'User id and Principal id does not match')
         else:
