@@ -54,3 +54,8 @@ pytest -vvv -s tests/
 # pytest --cov
 # open htmlcov/index.html
 ```
+
+### Run with docker
+```
+bash run_docker.sh
+```
